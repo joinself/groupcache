@@ -82,7 +82,6 @@ type HTTPPoolOptions struct {
 // for example "http://example.net:8000".
 func NewHTTPPool(self string) *HTTPPool {
 	p := NewHTTPPoolOpts(self, nil)
-	http.Handle(p.opts.BasePath, p)
 	return p
 }
 
