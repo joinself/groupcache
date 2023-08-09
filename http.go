@@ -86,17 +86,10 @@ func NewHTTPPool(self string) *HTTPPool {
 	return p
 }
 
-var httpPoolMade bool
-
 // NewHTTPPoolOpts initializes an HTTP pool of peers with the given options.
 // Unlike NewHTTPPool, this function does not register the created pool as an HTTP handler.
 // The returned *HTTPPool implements http.Handler and must be registered using http.Handle.
 func NewHTTPPoolOpts(self string, o *HTTPPoolOptions) *HTTPPool {
-	if httpPoolMade {
-		panic("groupcache: NewHTTPPool must be called only once")
-	}
-	httpPoolMade = true
-
 	p := &HTTPPool{
 		self:        self,
 		httpGetters: make(map[string]*httpGetter),

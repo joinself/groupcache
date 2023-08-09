@@ -60,7 +60,7 @@ var (
 // called exactly once, but not both.
 func RegisterPeerPicker(fn func() PeerPicker) {
 	if portPicker != nil {
-		panic("RegisterPeerPicker called more than once")
+		return
 	}
 	portPicker = func(_ string) PeerPicker { return fn() }
 }
@@ -72,7 +72,7 @@ func RegisterPeerPicker(fn func() PeerPicker) {
 // called exactly once, but not both.
 func RegisterPerGroupPeerPicker(fn func(groupName string) PeerPicker) {
 	if portPicker != nil {
-		panic("RegisterPeerPicker called more than once")
+		return
 	}
 	portPicker = fn
 }
